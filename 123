@@ -1,0 +1,74 @@
+read input parameters
+end read input parameters
+Reading training examples...example number: 2
+done
+init_struct_model...
+init_struct_constraints
+psi
+feature_vector_helper
+~~~pre_1
+~~~pre_1
+~~~pre_2
+~~~pre_2
+yayaya0
+yayaya1
+yayaya0
+yayaya1
+2.784 8.39 17.69 7.88 0.662 11.26 0 0 0 0 0 1 1 0 
+psi
+feature_vector_helper
+~~~pre_1
+~~~pre_1
+yayaya0
+yayaya0
+1 2 3 4.4 34 8 0 0 0 0 0 0 0 0 
+Iter 1: .find_most_violated_constraint_marginrescaling
+initialization_helper
+gibbs_sampling_helper
+0 4
+4 4
+0 4
+empty_label
+psi
+feature_vector_helper
+~~~pre_1
+~~~pre_1
+~~~pre_2
+~~~pre_2
+yayaya0
+yayaya1
+yayaya0
+yayaya1
+0 0 0 10.664 9.052 28.95 0 0 0 0 0 0 0 2 
+loss
+.find_most_violated_constraint_marginrescaling
+initialization_helper
+gibbs_sampling_helper
+0 2
+2 2
+0 2
+empty_label
+psi
+feature_vector_helper
+~~~pre_1
+~~~pre_1
+yayaya0
+yayaya0
+0 0 0 5.4 36 11 0 0 0 0 0 0 0 0 
+loss
+(NumConst=0, SV=0, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=0.00000
+Primal objective value: pval=0.00000
+Total number of constraints in final working set: 0 (of 0)
+Number of iterations: 1
+Number of calls to 'find_most_violated_constraint': 2
+Number of SV: 0 
+Norm of weight vector: |w|=0.00000
+Value of slack variable (on working set): xi=0.00000
+Value of slack variable (global): xi=0.00000
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.00000
+Runtime in cpu-seconds: 0.00
+Writing learned model...write_struct_model
+done

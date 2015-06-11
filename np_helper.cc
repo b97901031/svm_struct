@@ -29,6 +29,22 @@ vector<string> split(const string &s, char delim) {
 }
 */
 
+std::vector<std::string> &split(const std::string &s, char delim, std::vector<std::string> &elems) {
+  std::stringstream ss(s);
+  std::string item;
+  while (std::getline(ss, item, delim)) {
+    elems.push_back(item);
+  }
+  return elems;
+}
+
+
+std::vector<std::string> split(const std::string &s, char delim) {
+  std::vector<std::string> elems;
+  split(s, delim, elems);
+  return elems;
+}
+
 SAMPLE read_struct_examples_helper(char *labelfile, char *wordFeaturefile, char *predicateFeaturefile, char *structfile, STRUCT_LEARN_PARM *sparm) {
 
   // file - word - fea
@@ -170,31 +186,32 @@ SAMPLE read_struct_examples_helper(char *labelfile, char *wordFeaturefile, char 
     string item;
     while (getline(ss, item, ' ')) {elems.push_back(item);}
 
-    if (elems[0].compare("#")==0) {
-      if (elems.size()>1) {
-        // start of a sentence 
-      } else {
-        // end of a sentence
-        identicalWords.push_back(ws);
-        ws.clear();
-        wordFeatures.push_back(feature);
-      }
-    } else {
-      id = elems[0];
-      ws.push_back(id);
-      word_fea_count = elems.size()-1;
-      if (!fea.empty()) {printf("feature vector suffers from data corruption.\n");}
-      for (i=1; i<elems.size(); i++){
-        vector<string> fx;
-        stringstream ss2(elems[i]);
-        while(getline(ss2, item, ':')){
-          fx.push_back(item);
-        }
-        fea.push_back(stod(fx[1]));
-      }
-      feature.push_back(fea);
-      fea.clear();
+    if (elems[0] == "#") {
+      // start of a sentence 
+      if (elems.size() <= 1)
+	continue;
+
+      // end of a sentence
+      identicalWords.push_back(ws);
+      ws.clear();
+      wordFeatures.push_back(feature);
+      continue;
     }
+
+    id = elems[0];
+    ws.push_back(id);
+    word_fea_count = elems.size()-1;
+    if (!fea.empty()) {printf("feature vector suffers from data corruption.\n");}
+    for (i=1; i<elems.size(); i++){
+      vector<string> fx;
+      stringstream ss2(elems[i]);
+      while(getline(ss2, item, ':')){
+	fx.push_back(item);
+      }
+      fea.push_back(stod(fx[1]));
+    }
+    feature.push_back(fea);
+    fea.clear();
   }
 
   printf("Read predicate file...\n");
